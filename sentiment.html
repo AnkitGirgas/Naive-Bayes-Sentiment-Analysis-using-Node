@@ -13,7 +13,7 @@
 </body>
 <script>
 
-  var socket = io.connect("<your azure website url>"); // connec to server
+  var socket = io.connect("<your website url>"); // connec to server
 $('#submit').click(function(){
 if($('#textAnalysis').val())
    socket.emit('getSentiment', { text: $('#textAnalysis').val() }); // raise an event on the server
