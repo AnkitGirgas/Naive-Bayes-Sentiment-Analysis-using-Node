@@ -1,0 +1,31 @@
+<html>
+<head>
+
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+<input type="text" id="textAnalysis" />
+<input type="button" id="submit" value="Submit"/>
+<div id="response">
+    </div>
+</body>
+<script>
+
+  var socket = io.connect("<your azure website url>"); // connec to server
+$('#submit').click(function(){
+if($('#textAnalysis').val())
+   socket.emit('getSentiment', { text: $('#textAnalysis').val() }); // raise an event on the server
+
+})  
+   
+
+    socket.on('sendSentiment',function(data){
+        console.log(data);
+        $("#response").text(data.sentiment);
+
+    })
+
+</script>
+</html>
